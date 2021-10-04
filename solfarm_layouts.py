@@ -1,4 +1,5 @@
 from construct import Bytes, Padding, Int64ul, Int8ul, Struct
+from construct.core import Flag, Int32ul
 
 VAULT_LAYOUT = Struct(
     Padding(8),
@@ -25,4 +26,14 @@ USER_BALANCE_LAYOUT = Struct(
   Padding(8),
   "owner" / Bytes(32),
   "amount" / Int64ul
+)
+
+MINT_LAYOUT = Struct(
+  "mintAuthorityOption" / Int32ul,
+  "mintAuthority" / Bytes(32),
+  "supply" / Int64ul,
+  "decimals" / Int8ul,
+  "initialized" / Flag,
+  "freezeAuthorityOption" / Int32ul,
+  "freezeAuthority" / Bytes(32)
 )
